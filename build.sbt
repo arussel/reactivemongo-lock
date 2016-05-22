@@ -11,8 +11,8 @@ libraryDependencies ++= Seq(
   cache,
   ws,
   "org.scalatestplus.play" %% "scalatestplus-play" % "1.5.1" % Test,
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.11-play24",
-  //"org.reactivemongo" %% "play2-reactivemongo" % "0.11.9",
+  //"org.reactivemongo" %% "play2-reactivemongo" % "0.11.11-play24",
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.9",
   specs2 % Test,
   "de.flapdoodle.embed" % "de.flapdoodle.embed.mongo" % "1.44" % "test"
 )
