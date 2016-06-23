@@ -7,11 +7,18 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Global extends GlobalSettings {
 
-  def ensureIndex(collection: JSONCollection, index: Index, retry: Int = 10): Unit = collection.indexesManager.ensure(index) recover {
-    case t: Throwable =>
-      if (retry > 0)
-        ensureIndex(collection, index, retry - 1)
-      else throw t
+  def ensureIndex(collection: JSONCollection, index: Index, retry: Int = 10): Unit = {
+    println(s"trying to ensure index: $index $retry")
+    collection.indexesManager.ensure(index) map {
+      r =>
+        println("returned from ensuring index")
+        println(r)
+    } recover {
+      case t: Throwable =>
+        if (retry > 0)
+          ensureIndex(collection, index, retry - 1)
+        else throw t
+    }
   }
 
   override def onStart(app: Application) {
